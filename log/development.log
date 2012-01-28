@@ -42921,3 +42921,22 @@ Served asset /users.js - 304 Not Modified (0ms)
 
 Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-01-27 14:54:01 -0500
 Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+DEPRECATION WARNING: ActiveRecord::Associations::AssociationCollection is deprecated! Use ActiveRecord::Associations::CollectionProxy instead. (called from <top (required)> at /Users/jana/atheneum/config/environment.rb:5)
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateBooks (20120122011808)
+Migrating to CreateUsers (20120122011852)
+Migrating to CreateIusers (20120123181055)
+Migrating to AddEmailUniquenessIndex (20120124015841)
+Migrating to AddPasswordToUsers (20120124024941)
+Migrating to AddSaltToUsers (20120124025419)
+Migrating to AddAdminToUsers (20120125204607)
+Migrating to CreateRelationships (20120126163701)
+  [1m[35m (0.5ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("books")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("relationships")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_relationships_on_follower_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_relationships_on_follower_id_and_followed_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_relationships_on_followed_id')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("users")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_users_on_email')
