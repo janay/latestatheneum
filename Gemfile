@@ -6,7 +6,8 @@ gem 'will_paginate', '3.0.pre2'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3', '1.3.4'
+#gem 'sqlite3', '1.3.4'
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -41,4 +42,4 @@ group :test do
   gem 'turn', '0.8.2', :require => false
 end
 
-gem 'pg'
+
