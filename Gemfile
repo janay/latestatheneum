@@ -6,7 +6,7 @@ gem 'will_paginate', '3.0.pre2'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-#gem 'sqlite3', '1.3.4'
+gem 'sqlite3', '1.3.4'
 
 group :production do 
 gem 'pg'

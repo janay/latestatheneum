@@ -2,7 +2,7 @@
   <td class="book">
     <span class="title"><%= book.title %></span>
     <span class="timestamp">
-      Posted <%= time_ago_in_words(book.created_at) %> ago.
+      By <%= book.authors %> .
     </span>
   </td>
     <% if current_user?(book.user) %>

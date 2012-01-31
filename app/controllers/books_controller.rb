@@ -20,6 +20,13 @@ class BooksController < ApplicationController
         redirect_back_or root_path
     end
     
+    def borrowers
+        @title = "Borrowed"
+        @user = User.find(params[:id])
+        @users = @user.borrowers.paginate(:page => params[:page])
+       render 'shared/show_borrow'
+      end
+    
     private
 
         def authorized_user

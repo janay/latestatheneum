@@ -65,7 +65,20 @@ class UsersController < ApplicationController
       @users = @user.followers.paginate(:page => params[:page])
       render 'show_follow'
     end
-  
+    
+    def borrowing
+      @title = "Books you're borrowing"
+      @user = User.find(params[:id])
+      @books = @user.borrowing.paginate(:page => params[:page])
+      render 'shared/show_borrow'
+    end
+    
+    def borrowers
+        @title = "Books you're lending"
+        @user = User.find(params[:id])
+        @books = @user.borrowers.paginate(:page => params[:page])
+       render 'shared/show_borrow'
+      end
   private
  
      

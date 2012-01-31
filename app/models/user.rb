@@ -10,6 +10,13 @@ class User < ActiveRecord::Base
                                      :class_name => "Relationship",
                                      :dependent => :destroy
   has_many :followers, :through => :reverse_relationships, :source => :follower
+  
+  has_many :borrows, :foreign_key => "borrower_id",
+                     :dependent => :destroy
+
+  has_many :borrowing, :through => :borrows, :source => :book
+  
+                     
     
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name,    :presence => true, 
@@ -55,6 +62,47 @@ class User < ActiveRecord::Base
   def feed
         Book.from_users_followed_by(self)    
   end
+  
+  def borrowing?(book)
+  !((borrows.find_by_book_id(book)).nil?)
+  end
+  
+  def borrow!(book)
+  borrows.create!(:book_id => book)
+  #book.changestatus
+  end
+  
+  def unborrow!(book)
+    puts "********************** unborrow"
+    puts (borrows.find_by_book_id(book)).nil?
+    (borrows.find_by_book_id(book)).destroy
+    #book.changestatus
+  end
+  
+  def borrowers
+    borrowedbooks=[]
+    books.each do |book|
+      if !((book.borrowers).nil?)
+        borrowedbooks << book
+      end 
+    end 
+      return borrowedbooks
+  end 
+
+  def numlents
+      lents=0;
+      books.each do |book|
+        if !((book.borrowers).nil?)
+          lents=lents+1
+        end 
+      end 
+        return lents
+    end 
+ 
+  
+  
+      
+  
   private
 
     def encrypt_password

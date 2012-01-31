@@ -1,7 +1,7 @@
 Atheneum::Application.routes.draw do
   resources :users do
       member do
-        get :following, :followers
+        get :following, :followers, :borrowing, :borrowers
       end
   end
     
@@ -17,6 +17,7 @@ Atheneum::Application.routes.draw do
   resources :books, :only => [:create, :destroy]
   resources :sessions, :only => [:new, :create, :destroy]
   resources :relationships, :only => [:create, :destroy]
+  resources :borrows, :only => [:create, :destroy]
   
   match '/signup',    :to => 'users#new'
   match '/signin',    :to => 'sessions#new'

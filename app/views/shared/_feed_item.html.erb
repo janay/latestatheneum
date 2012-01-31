@@ -8,14 +8,31 @@
     </span>
     <span class="title"><%= feed_item.title %></span>
     <span class="timestamp">
-      Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+      By <%= feed_item.authors %> .
     </span>
   </td>
-<% if current_user?(feed_item.user) %>
-    <td>
-      <%= link_to "delete", feed_item, :method => :delete,
-                                       :confirm => "You sure?",
-                                       :title => feed_item.title %>
-    </td>
-  <% end %>
+<% if !current_user?(feed_item.user) %>
+	<td>
+	<% if current_user.borrowing?(feed_item.id) %>
+		<%= form_for current_user.borrows.find_by_book_id(feed_item),
+             :html => { :method => :delete } do |f| %>
+  	<div class="actions"><%= f.submit "Return" %></div>
+	<% end %>	
+  	<% else %>
+   
+	<%= form_for current_user.borrows.build(:book_id => feed_item.id) do |f| %>
+	<div><%= f.hidden_field :book_id %></div>
+	  <div class="actions"><%= f.submit "Borrow" %></div>
+	 
+	<% end %>
+ </td>
+	<% end %>
+	<% else %>
+	   <td>
+	      <%= link_to "delete", feed_item, :method => :delete,
+	                                       :confirm => "You sure?",
+	                                       :title => feed_item.title %>
+	    </td>
+	  <% end %>
+	
 </tr>

@@ -1,0 +1,31 @@
+<table summary="Information about library borrows/borrowers">
+  <tr>
+    <td class="main">
+      <h1><%= @title %></h1>
+    </td>
+    <td class="sidebar round">
+      <strong>Name</strong> <%= @user.name %><br />
+      <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
+      <strong>Books</strong> <%= @user.books.count %>
+      <%= render 'shared/stats' %>
+      <% unless @books.empty? %>
+        <% @books.each do |book| %>
+          <tr>
+		  <td class="gravatar">
+		    <%= link_to gravatar_for(book.user), book.user %>
+		  </td>
+		  <td class="book">
+		    <span class="user">
+		      <%= link_to book.user.name, book.user %>
+		    </span>
+		    <span class="title"><%= book.title %></span>
+		    <span class="timestamp">
+		      By <%= book.authors %> .
+		    </span>
+		  </td>
+		</tr>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+</table>
